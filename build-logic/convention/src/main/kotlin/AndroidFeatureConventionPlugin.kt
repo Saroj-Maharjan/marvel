@@ -19,7 +19,7 @@ class AndroidFeatureConventionPlugin: Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 defaultConfig {
                     testInstrumentationRunner =
-                        "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
+                        "com.sawrose.marvelapp.core.testing.MarvelTestRunner"
                 }
                 configureGradleManagedDevices(this)
             }
@@ -27,18 +27,18 @@ class AndroidFeatureConventionPlugin: Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
             dependencies {
-                add("implementation", project(":core:model"))
-                add("implementation", project(":core:ui"))
+//                add("implementation", project(":core:model"))
+//                add("implementation", project(":core:ui"))
                 add("implementation", project(":core:designsystem"))
                 add("implementation", project(":core:data"))
                 add("implementation", project(":core:common"))
-                add("implementation", project(":core:domain"))
-                add("implementation", project(":core:analytics"))
+//                add("implementation", project(":core:domain"))
+//                add("implementation", project(":core:analytics"))
 
-                add("testImplementation", kotlin("test"))
-                add("testImplementation", project(":core:testing"))
-                add("androidTestImplementation", kotlin("test"))
-                add("androidTestImplementation", project(":core:testing"))
+//                add("testImplementation", kotlin("test"))
+//                add("testImplementation", project(":core:testing"))
+//                add("androidTestImplementation", kotlin("test"))
+//                add("androidTestImplementation", project(":core:testing"))
 
                 add("implementation", libs.findLibrary("coil.kt").get())
                 add("implementation", libs.findLibrary("coil.kt.compose").get())
