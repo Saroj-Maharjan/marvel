@@ -28,7 +28,7 @@ retrofitKotlinxSerializationJson = "0.8.0"
 room = "2.5.0"
 
 androidxTest = "1.4.0"
-androidxTestExt = "1.1.4"
+androidxTestExt = "1.1.5"
 androidxEspresso = "3.4.0"
 androidxTestUiAutomator = "2.2.0"
 
