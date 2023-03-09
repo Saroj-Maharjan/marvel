@@ -18,7 +18,7 @@ androidxComposeMaterial3 = "1.0.1"
 androidxActivityCompose = "1.6.1"
 
 coil = "2.2.2"
-hilt = "2.44.2"
+hilt = "2.45"
 hiltExt = "1.0.0"
 kotlin = "1.8.10"
 kotlinxCoroutines = "1.6.4"
