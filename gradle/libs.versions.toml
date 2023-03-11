@@ -16,7 +16,7 @@ androidxMetrics = "1.0.0-alpha03"
 androidxWindowManager = "1.0.0"
 
 ## Compose
-androidxComposeBom = "2022.12.00"
+androidxComposeBom = "2023.01.00"
 androidxComposeCompiler = "1.4.2"
 androidxComposeMaterial3 = "1.0.1"
 androidxActivityCompose = "1.6.1"
