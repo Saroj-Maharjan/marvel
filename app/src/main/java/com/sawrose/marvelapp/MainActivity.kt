@@ -5,22 +5,28 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.material3.Text
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.metrics.performance.JankStats
 import com.example.compose.MarvelTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.sawrose.marvelapp.composable.MainScreen
+import com.sawrose.marvelapp.core.data.utils.NetworkMonitor
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -32,6 +38,9 @@ class MainActivity : ComponentActivity() {
 
     private val mainViewmodel by viewModels<MainViewmodel>()
 
+    @Inject
+    lateinit var networkMonitor: NetworkMonitor
+
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
@@ -40,18 +49,28 @@ class MainActivity : ComponentActivity() {
         // including IME animations
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        var state: MainContract.State by mutableStateOf(MainContract.State(isLoading = true, isSuccess = false))
+        var state: MainContract.State by mutableStateOf(
+            MainContract.State(
+                isLoading = true,
+                isSuccess = false
+            )
+        )
         lifecycleScope.launch {
-            mainViewmodel.viewState.collect {
-                state = it
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewmodel.viewState.collect{
+                        state = it
+                    }
             }
         }
 
         setContent {
+            val systemUiController = rememberSystemUiController()
+
             MarvelTheme {
-                MainScreen(mainViewmodel = mainViewmodel) {
-                    
-                }
+                MainScreen(
+                    networkMonitor = networkMonitor,
+                    windowSizeClass = calculateWindowSizeClass(this),
+                )
             }
         }
     }

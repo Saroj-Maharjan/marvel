@@ -5,7 +5,6 @@ import com.sawrose.marvelapp.configureKotlinAndroid
 import com.sawrose.marvelapp.configurePrintApksTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.internal.impldep.com.jcraft.jsch.ConfigRepository.defaultConfig
 import org.gradle.kotlin.dsl.configure
 
 class AndroidApplicationConventionPlugin : Plugin<Project>{

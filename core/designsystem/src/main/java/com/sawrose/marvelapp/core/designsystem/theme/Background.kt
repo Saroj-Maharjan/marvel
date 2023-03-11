@@ -9,11 +9,14 @@ import androidx.compose.ui.unit.Dp
 * A class to model background colors.
 * */
 @Immutable
-data class Background(
+data class BackgroundTheme(
     val color: Color = Color.Unspecified,
     val tonalElevation: Dp = Dp.Unspecified
 )
 
-//val localBackgroundTheme = staticCompositionLocalOf {
-//    BackgroundTheme()
-//}
+/**
+ * A composition local for [BackgroundTheme].
+ */
+val LocalBackgroundTheme = staticCompositionLocalOf {
+    BackgroundTheme()
+}

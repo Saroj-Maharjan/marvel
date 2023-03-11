@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MarvelApp</string>
     <string name="home">Dashboard</string>
+    <string name="characters">Characters</string>
+    <string name="favourite">Favourite</string>
+    <string name="not_connected">Not Connected to Internet</string>
 </resources>

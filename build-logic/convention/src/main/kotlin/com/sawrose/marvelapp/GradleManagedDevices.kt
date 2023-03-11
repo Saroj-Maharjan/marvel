@@ -2,9 +2,8 @@ package com.sawrose.marvelapp
 
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.ManagedVirtualDevice
-import org.gradle.api.Project
 import org.gradle.kotlin.dsl.invoke
-import java.util.Locale
+import java.util.*
 
 /**
  * Configure project for Gradle managed devices

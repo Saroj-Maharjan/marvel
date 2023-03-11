@@ -1,15 +1,19 @@
 [versions]
-androidGradlePlugin = "7.4.1"
+androidGradlePlugin = "7.4.2"
 
 androidDesugarJdkLibs = "1.2.2"
 ksp = "1.8.0-1.0.9"
 
+accompanist = "0.28.0"
+androidxActivity = "1.6.1"
+androidxAppCompat = "1.5.1"
 androidxCore = "1.9.0"
 androidxSplashScreen = "1.0.0"
 androidxLifecycle = "2.6.0-beta01"
 androidxNavigation = "2.5.3"
 androidxHiltNavigationCompose = "1.0.0"
 androidxMetrics = "1.0.0-alpha03"
+androidxWindowManager = "1.0.0"
 
 ## Compose
 androidxComposeBom = "2022.12.00"
@@ -37,12 +41,17 @@ junit4 = "4.13.2"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+
 ## AndroidX
+accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
+accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
+androidx-appCompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
 androidx-core-splashScreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxSplashScreen" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivityCompose" }
 androidx-metrics-performance = { group = "androidx.metrics", name = "metrics-performance", version.ref = "androidxMetrics" }
+androidx-window-manager = { group = "androidx.window", name = "window-manager", version.ref = "androidxWindowManager" }
 
 ## Compose
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
