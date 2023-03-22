@@ -46,7 +46,7 @@ fun MarvelNavigationBar(
     NavigationBar(
         modifier = modifier,
         contentColor = MarvelNavigationDefaults.navigationContentColor(),
-        tonalElevation = 0.dp,
+        tonalElevation = 4.dp,
         content = content
     )
 }

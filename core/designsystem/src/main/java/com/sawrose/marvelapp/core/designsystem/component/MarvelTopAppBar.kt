@@ -84,7 +84,7 @@ fun MarvelTopBarPreview() {
         title = R.string.untitled,
         navigationIcon = MarvelIcons.moreVert,
         navigationIconContentDescription = "Navigation Icon",
-        actionIcon = MarvelIcons.search,
+        actionIcon = MarvelIcons.settings,
         actionIconContentDescription = "Action Icon",
     )
 }
