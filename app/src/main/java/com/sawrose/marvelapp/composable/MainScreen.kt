@@ -1,9 +1,8 @@
 package com.sawrose.marvelapp.composable
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.*
+import androidx.compose.material3.SnackbarDuration.*
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,8 +21,10 @@ import com.sawrose.marvelapp.core.data.utils.NetworkMonitor
 import com.sawrose.marvelapp.core.designsystem.component.MarvelBackground
 import com.sawrose.marvelapp.core.designsystem.component.MarvelGradientBackground
 import com.sawrose.marvelapp.core.designsystem.component.MarvelTopAppBar
+import com.sawrose.marvelapp.core.designsystem.icon.MarvelIcons
 import com.sawrose.marvelapp.core.designsystem.theme.GradientColors
 import com.sawrose.marvelapp.core.designsystem.theme.LocalGradientColors
+import com.sawrose.marvelapp.feature.settings.SettingsDialog
 import com.sawrose.marvelapp.navigation.MarvelBottomNavigation
 import com.sawrose.marvelapp.navigation.MarvelNavHost
 
@@ -58,10 +59,16 @@ fun MainScreen(
                 if (isOffline) {
                     snackbarHostState.showSnackbar(
                         message = notConnectedMessage,
-                        duration = SnackbarDuration.Indefinite,
+                        duration = Indefinite,
                     )
                 }
             }
+            if(appState.shouldShowSettingsDialog){
+                SettingsDialog(
+                    onDismiss = {appState.setShowSettingsDialog(false)},
+                )
+            }
+
             Scaffold(
                 modifier = Modifier.semantics {
                     testTagsAsResourceId = true
@@ -81,37 +88,29 @@ fun MainScreen(
                     }
                 }
             ) { padding ->
-                MarvelContent(
-                    appState,
-                    Modifier.padding(padding)
-                )
+                Column(
+                    Modifier.fillMaxSize()
+                        .padding(padding)
+                ){
+                    val destination = appState.currentTopLevelDestination
+                    if (destination!=null){
+                        MarvelTopAppBar(
+                            title = R.string.home,
+                            actionIcon = MarvelIcons.settings,
+                            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                                containerColor = Color.Transparent,
+                            ),
+                            actionIconContentDescription = "Search Icon",
+                            onActionClick = {appState.setShowSettingsDialog(true)},
+                        )
+                    }
+
+                    MarvelNavHost(
+                        navController = appState.navController,
+                    )
+                }
             }
         }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MarvelContent(
-    appState: MarvelAppState,
-    modifier: Modifier
-) {
-    Column(modifier.fillMaxSize()){
-        val destination = appState.currentTopLevelDestination
-        if (destination!=null){
-            MarvelTopAppBar(
-                title = R.string.home,
-                actionIcon = Icons.Rounded.Search,
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.Transparent,
-                ),
-                actionIconContentDescription = "Search Icon"
-            )
-        }
-
-        MarvelNavHost(
-            navController = appState.navController,
-        )
     }
 }
 

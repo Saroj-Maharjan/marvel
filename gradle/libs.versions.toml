@@ -8,6 +8,7 @@ accompanist = "0.28.0"
 androidxActivity = "1.6.1"
 androidxAppCompat = "1.6.1"
 androidxCore = "1.9.0"
+androidxDataStore = "1.0.0"
 androidxSplashScreen = "1.0.0"
 androidxLifecycle = "2.6.0"
 androidxNavigation = "2.5.3"
@@ -20,6 +21,10 @@ androidxComposeBom = "2023.01.00"
 androidxComposeCompiler = "1.4.2"
 androidxComposeMaterial3 = "1.0.1"
 androidxActivityCompose = "1.6.1"
+
+
+protobuf = "3.21.12"
+protobufPlugin = "0.8.19"
 
 coil = "2.2.2"
 hilt = "2.45"
@@ -72,6 +77,14 @@ androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+
+## DataStore
+androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
+androidx-dataStore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
+
+## ProtoBuff
+protobuf-kotlin-lite = { group = "com.google.protobuf", name = "protobuf-kotlin-lite", version.ref = "protobuf" }
+protobuf-protoc = { group = "com.google.protobuf", name = "protoc", version.ref = "protobuf" }
 
 ## Navigation
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
@@ -140,4 +153,5 @@ android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 

@@ -1,0 +1,21 @@
+syntax = "proto3";
+import "com/sawrose/marvelapp/data/theme_brand.proto";
+import "com/sawrose/marvelapp/data/dark_theme_config.proto";
+
+option java_package = "com.sawrose.marvelapp.core.datastore";
+option java_multiple_files = true;
+
+message UserPreferences{
+  reserved 2;
+
+  repeated int32 deprecated_int_character_ids = 1;
+  int32 characterChangeListVersion = 3;
+
+  map<string, bool> character_favourite_ids = 4;
+
+  ThemeBrandProto theme_brand = 5;
+  DarkThemeConfigProto dark_theme_config = 6;
+
+  bool use_dynamic_color = 7;
+
+}

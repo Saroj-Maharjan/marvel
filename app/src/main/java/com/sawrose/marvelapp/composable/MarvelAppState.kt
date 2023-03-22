@@ -2,10 +2,7 @@ package com.sawrose.marvelapp.composable
 
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.util.trace
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -66,6 +63,9 @@ class MarvelAppState(
             else -> null
         }
 
+    var shouldShowSettingsDialog by mutableStateOf(false)
+        private set
+
     val shouldShowBottomBar: Boolean
         get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
 
@@ -113,6 +113,10 @@ class MarvelAppState(
                 FAVOURITE -> navController.navigateToFavourite(topLevelNavOption)
             }
         }
+    }
+
+    fun setShowSettingsDialog(show: Boolean) {
+        shouldShowSettingsDialog = show
     }
 
 }

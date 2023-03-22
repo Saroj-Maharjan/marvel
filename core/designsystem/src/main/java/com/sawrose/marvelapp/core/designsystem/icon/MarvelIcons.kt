@@ -3,7 +3,7 @@ package com.sawrose.marvelapp.core.designsystem.icon
 import androidx.annotation.DrawableRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.sawrose.marvelapp.core.designsystem.R
 
@@ -16,7 +16,7 @@ object MarvelIcons {
     val favouriteSelected = R.drawable.ic_favorite
     val favouriteUnselected = R.drawable.ic_favorite_boarder
     val moreVert = Icons.Default.MoreVert
-    val search = Icons.Rounded.Search
+    val settings = Icons.Rounded.Settings
 }
 
 /**
