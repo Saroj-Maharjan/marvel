@@ -1,7 +1,7 @@
 [versions]
 androidGradlePlugin = "7.4.2"
 
-androidDesugarJdkLibs = "1.2.2"
+androidDesugarJdkLibs = "2.0.3"
 ksp = "1.8.10-1.0.9"
 
 accompanist = "0.28.0"
