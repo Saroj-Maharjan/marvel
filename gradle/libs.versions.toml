@@ -24,7 +24,7 @@ androidxActivityCompose = "1.6.1"
 
 
 protobuf = "3.21.12"
-protobufPlugin = "0.8.19"
+protobufPlugin = "0.9.3"
 
 coil = "2.2.2"
 hilt = "2.45"
