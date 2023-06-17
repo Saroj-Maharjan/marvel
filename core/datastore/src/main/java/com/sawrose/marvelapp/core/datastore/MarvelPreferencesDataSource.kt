@@ -2,9 +2,9 @@ package com.sawrose.marvelapp.core.datastore
 
 import android.util.Log
 import androidx.datastore.core.DataStore
+import com.sawrose.marvelapp.core.model.DarkThemeConfig
 import com.sawrose.marvelapp.core.model.ThemeBrand
 import com.sawrose.marvelapp.core.model.UserData
-import com.sawrose.marvelapp.core.model.DarkThemeConfig
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import java.io.IOException
@@ -18,6 +18,7 @@ class MarvelPreferencesDataSource @Inject constructor(
         .map {
             UserData(
                 favouriteCharacters = it.characterFavouriteIdsMap.keys,
+                viewedCharacterResource = it.viewedCharacterIdsMap.keys,
                 themeBrand = when(it.themeBrand) {
                     null,
                     ThemeBrandProto.THEME_BRAND_UNSPECIFIED,
@@ -101,6 +102,24 @@ class MarvelPreferencesDataSource @Inject constructor(
             }
         } catch (e: Exception){
             e.printStackTrace()
+        }
+    }
+
+    suspend fun setCharacterResourceViewed(characterResourceId: String, viewed: Boolean) {
+        setCharacterResourcesViewed(listOf(characterResourceId), viewed)
+    }
+
+    suspend fun setCharacterResourcesViewed(characterResourceIds: List<String>, viewed: Boolean) {
+        userPreferences.updateData { prefs ->
+            prefs.copy {
+                characterResourceIds.forEach { id ->
+                    if (viewed) {
+                        viewedCharacterIds.put(id, true)
+                    } else {
+                        viewedCharacterIds.remove(id)
+                    }
+                }
+            }
         }
     }
 

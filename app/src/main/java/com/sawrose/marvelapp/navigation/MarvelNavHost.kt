@@ -2,8 +2,8 @@ package com.sawrose.marvelapp.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.sawrose.marvelapp.composable.MarvelAppState
 import com.sawrose.marvelapp.feature.characters.navigation.characterRoute
 import com.sawrose.marvelapp.feature.characters.navigation.characterScreen
 import com.sawrose.marvelapp.feature.favourite.navigation.favouriteScreen
@@ -17,10 +17,12 @@ import com.sawrose.marvelapp.feature.favourite.navigation.favouriteScreen
  */
 @Composable
 fun MarvelNavHost(
-    navController: NavHostController,
+    appState: MarvelAppState,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,
     startDestination: String = characterRoute,
 ) {
+    val navController = appState.navController
     NavHost(
         navController = navController,
         startDestination = startDestination,

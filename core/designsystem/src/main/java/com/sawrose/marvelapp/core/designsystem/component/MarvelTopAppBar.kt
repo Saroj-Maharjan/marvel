@@ -77,7 +77,7 @@ fun MarvelTopAppBar(
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(" MarvelTopBar Preview")
+@ThemePreviews
 @Composable
 fun MarvelTopBarPreview() {
     MarvelTopAppBar(

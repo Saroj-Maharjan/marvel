@@ -12,7 +12,9 @@ fun NavController.navigateToCharacter(navOptions: NavOptions? = null) {
     this.navigate(characterRoute, navOptions)
 }
 
-fun NavGraphBuilder.characterScreen(onCharacterClick: (String)-> Unit){
+fun NavGraphBuilder.characterScreen(
+    onCharacterClick: (String)-> Unit
+){
     composable(route = characterRoute) {
         CharacterRoute(onCharacterClick)
     }

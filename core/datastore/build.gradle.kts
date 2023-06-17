@@ -1,7 +1,3 @@
-import com.google.protobuf.gradle.builtins
-import com.google.protobuf.gradle.generateProtoTasks
-import com.google.protobuf.gradle.protobuf
-import com.google.protobuf.gradle.protoc
 
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -12,8 +8,15 @@ plugins {
 }
 
 android {
+    defaultConfig {
+        consumerProguardFiles("consumer-rules.pro")
+    }
     namespace = "com.sawrose.marvelapp.core.datastore"
-
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+        }
+    }
 }
 
 //setup protobuf configuration, generating lite java and kotlin files

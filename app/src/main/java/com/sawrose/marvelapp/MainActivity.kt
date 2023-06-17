@@ -5,26 +5,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.*
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.metrics.performance.JankStats
-import com.example.compose.MarvelTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.sawrose.marvelapp.MainActivityUIState.Loading
 import com.sawrose.marvelapp.MainActivityUIState.Success
 import com.sawrose.marvelapp.composable.MainScreen
 import com.sawrose.marvelapp.core.data.utils.NetworkMonitor
-import com.sawrose.marvelapp.core.model.DarkThemeConfig
+import com.sawrose.marvelapp.core.designsystem.theme.MarvelTheme
 import com.sawrose.marvelapp.core.model.DarkThemeConfig.*
-import com.sawrose.marvelapp.core.model.ThemeBrand
 import com.sawrose.marvelapp.core.model.ThemeBrand.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -42,7 +38,7 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var lazyStats: dagger.Lazy<JankStats>
 
-    val mainViewmodel: MainViewmodel by viewModels()
+    private val mainViewmodel: MainViewmodel by viewModels()
 
     @Inject
     lateinit var networkMonitor: NetworkMonitor
@@ -68,7 +64,7 @@ class MainActivity : ComponentActivity() {
         // evaluated each time the app needs to be redrawn so it should be fast to avoid blocking
         // the UI.
         splashScreen.setKeepOnScreenCondition {
-            when(uiState){
+            when (uiState) {
                 Loading -> true
                 is Success -> false
             }
@@ -83,20 +79,22 @@ class MainActivity : ComponentActivity() {
             val systemUiController = rememberSystemUiController()
             val darkTheme = shouldUseDarkTheme(uiState)
 
-            DisposableEffect(systemUiController, darkTheme ){
+            DisposableEffect(systemUiController, darkTheme) {
                 systemUiController.systemBarsDarkContentEnabled = !darkTheme
                 onDispose { }
             }
 
-            MarvelTheme(
-                darkTheme = darkTheme,
-                androidTheme = shouldUseAndroidTheme(uiState),
-                disableDynamicTheming = shouldDisableDynamicTheming(uiState)
-            ) {
-                MainScreen(
-                    networkMonitor = networkMonitor,
-                    windowSizeClass = calculateWindowSizeClass(this),
-                )
+            CompositionLocalProvider {
+                MarvelTheme(
+                    darkTheme = darkTheme,
+                    androidTheme = shouldUseAndroidTheme(uiState),
+                      disableDynamicTheming = shouldDisableDynamicTheming(uiState)
+                ) {
+                    MainScreen(
+                        networkMonitor = networkMonitor,
+                        windowSizeClass = calculateWindowSizeClass(this),
+                    )
+                }
             }
         }
     }

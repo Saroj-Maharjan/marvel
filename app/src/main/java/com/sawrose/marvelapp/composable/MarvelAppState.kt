@@ -6,6 +6,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.util.trace
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -17,9 +18,9 @@ import com.sawrose.marvelapp.feature.characters.navigation.characterRoute
 import com.sawrose.marvelapp.feature.characters.navigation.navigateToCharacter
 import com.sawrose.marvelapp.feature.favourite.navigation.favouriteRoute
 import com.sawrose.marvelapp.feature.favourite.navigation.navigateToFavourite
-import com.sawrose.marvelapp.navigation.MarvelBottomNavigation
-import com.sawrose.marvelapp.navigation.MarvelBottomNavigation.CHARACTERS
-import com.sawrose.marvelapp.navigation.MarvelBottomNavigation.FAVOURITE
+import com.sawrose.marvelapp.navigation.TopLevelDestination
+import com.sawrose.marvelapp.navigation.TopLevelDestination.CHARACTERS
+import com.sawrose.marvelapp.navigation.TopLevelDestination.FAVOURITE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -56,18 +57,18 @@ class MarvelAppState(
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
 
-    val currentTopLevelDestination: MarvelBottomNavigation?
+    val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
             characterRoute -> CHARACTERS
             favouriteRoute -> FAVOURITE
             else -> null
         }
 
-    var shouldShowSettingsDialog by mutableStateOf(false)
-        private set
-
     val shouldShowBottomBar: Boolean
         get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
+
+    val shouldShowNavRail: Boolean
+        get() = !shouldShowBottomBar
 
     val isOffline = networkMonitor.isOnline
         .map(Boolean::not)
@@ -81,8 +82,8 @@ class MarvelAppState(
      * Map of Marvel BottomBar destinations to be used in the TopBar, BottomBar and NavRail. The key is the
      * route.
      */
-    val marvelBottomBarNavigation: List<MarvelBottomNavigation> =
-        MarvelBottomNavigation.values().asList()
+    val marvelBottomBarNavigation: List<TopLevelDestination> =
+        TopLevelDestination.values().asList()
 
 
     /**
@@ -92,7 +93,7 @@ class MarvelAppState(
      *
      * @param MarvelBottomNavigation: The destination the app needs to navigate to.
      */
-    fun navigateToBottomBarNavigation(marvelBottomBarNavigation: MarvelBottomNavigation) {
+    fun navigateToBottomBarNavigation(marvelBottomBarNavigation: TopLevelDestination) {
         trace("Navigation: ${marvelBottomBarNavigation.name}") {
             val topLevelNavOption = navOptions {
                 // Pop up to the start destination of the graph to
@@ -115,10 +116,6 @@ class MarvelAppState(
         }
     }
 
-    fun setShowSettingsDialog(show: Boolean) {
-        shouldShowSettingsDialog = show
-    }
-
 }
 
 /**
@@ -137,4 +134,10 @@ private fun NavigationTrackingSideEffect(navController: NavHostController) {
             navController.removeOnDestinationChangedListener(listener)
         }
     }
+}
+
+internal fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination): Boolean {
+    return this?.hierarchy?.any {
+        it.route?.contains(destination.name, true) ?: false
+    } ?: false
 }

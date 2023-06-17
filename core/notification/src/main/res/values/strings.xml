@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="character_notification_channel_name">Character Update</string>
+    <string name="character_notification_channel_description">The Latest update on Marvel Characters</string>
+    <string name="character_notification_group_summary">%1$d characters updates</string>
+</resources>

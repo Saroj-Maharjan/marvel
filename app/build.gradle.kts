@@ -5,7 +5,6 @@ plugins {
     id("marvel.android.application.compose")
     id("marvel.android.flavour")
     id("marvel.android.hilt")
-
 }
 
 android {
@@ -16,7 +15,8 @@ android {
 
         // Custom test runner to set up Hilt dependency graph
         testInstrumentationRunner =
-            "com.google.samples.apps.nowinandroid.core.testing.MaTestRunner"
+            "com.sawrose.marvelapp.core.testing.MarvelTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -29,7 +29,10 @@ android {
         val release by getting {
             isMinifyEnabled = true
             applicationIdSuffix = MaBuildType.RELEASE.applicationIdSuffix
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
 
             // To publish on the Play store a private signing key is required, but to allow anyone
             // who clones the code to sign and run the release variant, use the debug signing key.
@@ -49,9 +52,11 @@ android {
         }
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+            excludes.add("META-INF/LICENSE.md")
+            excludes.add("META-INF/LICENSE-notice.md")
         }
     }
 
@@ -59,20 +64,9 @@ android {
         unitTests {
             isIncludeAndroidResources = true
         }
-//        managedDevices {
-//            devices {
-//                maybeCreate<ManagedVirtualDevice>("pixel4api30").apply {
-//                    device = "Pixel 4"
-//                    apiLevel = 30
-//                    // ATDs currently support only API level 30.
-//                    systemImageSource = "aosp-atd"
-//                }
-//            }
-//        }
-//    }
-
-        namespace = "com.sawrose.marvelapp"
     }
+
+    namespace = "com.sawrose.marvelapp"
 }
 
 
@@ -84,10 +78,14 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:network"))
 
-
     implementation(project(":feature:characters"))
     implementation(project(":feature:favourite"))
     implementation(project(":feature:settings"))
+
+    implementation(project(":sync:work"))
+
+    androidTestImplementation(project(":core:testing"))
+    androidTestImplementation(kotlin("test"))
 
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.activity.compose)
@@ -104,4 +102,16 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
 
     implementation(libs.coil.kt)
+
+    androidTestImplementation(kotlin("test"))
+}
+
+
+// androidx.test is forcing JUnit, 4.12. This forces it to use 4.13
+configurations.configureEach {
+    resolutionStrategy {
+        force(libs.junit4)
+        // Temporary workaround for https://issuetracker.google.com/174733673
+        force("org.objenesis:objenesis:2.6")
+    }
 }

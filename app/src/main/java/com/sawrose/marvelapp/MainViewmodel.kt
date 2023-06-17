@@ -4,17 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sawrose.marvelapp.MainActivityUIState.Loading
 import com.sawrose.marvelapp.MainActivityUIState.Success
-import com.sawrose.marvelapp.MainContract.*
-import com.sawrose.marvelapp.core.common.mvi.BaseViewModel
 import com.sawrose.marvelapp.core.data.repository.UserDataRepository
 import com.sawrose.marvelapp.core.model.UserData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

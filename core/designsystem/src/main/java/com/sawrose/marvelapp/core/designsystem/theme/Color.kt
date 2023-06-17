@@ -1,68 +1,210 @@
-package com.example.compose
+package com.sawrose.marvelapp.core.designsystem.theme
+
+import androidx.annotation.VisibleForTesting
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-internal val Blue10 = Color(0xFF001F28)
-internal val Blue20 = Color(0xFF003544)
-internal val Blue30 = Color(0xFF004D61)
-internal val Blue40 = Color(0xFF006780)
-internal val Blue80 = Color(0xFF5DD5FC)
-internal val Blue90 = Color(0xFFB8EAFF)
-internal val Blue95 = Color(0xFFDDF4FF)
-internal val DarkGreen10 = Color(0xFF0D1F12)
-internal val DarkGreen20 = Color(0xFF223526)
-internal val DarkGreen30 = Color(0xFF394B3C)
-internal val DarkGreen40 = Color(0xFF4F6352)
-internal val DarkGreen80 = Color(0xFFB7CCB8)
-internal val DarkGreen90 = Color(0xFFD3E8D3)
-internal val DarkGreenGray10 = Color(0xFF1A1C1A)
-internal val DarkGreenGray20 = Color(0xFF2F312E)
-internal val DarkGreenGray90 = Color(0xFFE2E3DE)
-internal val DarkGreenGray95 = Color(0xFFF0F1EC)
-internal val DarkGreenGray99 = Color(0xFFFBFDF7)
-internal val DarkPurpleGray10 = Color(0xFF201A1B)
-internal val DarkPurpleGray20 = Color(0xFF362F30)
-internal val DarkPurpleGray90 = Color(0xFFECDFE0)
-internal val DarkPurpleGray95 = Color(0xFFFAEEEF)
-internal val DarkPurpleGray99 = Color(0xFFFCFCFC)
-internal val Green10 = Color(0xFF00210B)
-internal val Green20 = Color(0xFF003919)
-internal val Green30 = Color(0xFF005227)
-internal val Green40 = Color(0xFF006D36)
-internal val Green80 = Color(0xFF0EE37C)
-internal val Green90 = Color(0xFF5AFF9D)
-internal val GreenGray30 = Color(0xFF414941)
-internal val GreenGray50 = Color(0xFF727971)
-internal val GreenGray60 = Color(0xFF8B938A)
-internal val GreenGray80 = Color(0xFFC1C9BF)
-internal val GreenGray90 = Color(0xFFDDE5DB)
-internal val Orange10 = Color(0xFF380D00)
-internal val Orange20 = Color(0xFF5B1A00)
-internal val Orange30 = Color(0xFF812800)
-internal val Orange40 = Color(0xFFA23F16)
-internal val Orange80 = Color(0xFFFFB59B)
-internal val Orange90 = Color(0xFFFFDBCF)
-internal val Orange95 = Color(0xFFFFEDE8)
-internal val Purple10 = Color(0xFF36003C)
-internal val Purple20 = Color(0xFF560A5D)
-internal val Purple30 = Color(0xFF702776)
-internal val Purple40 = Color(0xFF8B418F)
-internal val Purple80 = Color(0xFFFFA9FE)
-internal val Purple90 = Color(0xFFFFD6FA)
-internal val Purple95 = Color(0xFFFFEBFA)
-internal val PurpleGray30 = Color(0xFF4D444C)
-internal val PurpleGray50 = Color(0xFF7F747C)
-internal val PurpleGray60 = Color(0xFF998D96)
-internal val PurpleGray80 = Color(0xFFD0C3CC)
-internal val PurpleGray90 = Color(0xFFEDDEE8)
-internal val Red10 = Color(0xFF410002)
-internal val Red20 = Color(0xFF690005)
-internal val Red30 = Color(0xFF93000A)
-internal val Red40 = Color(0xFFBA1A1A)
-internal val Red80 = Color(0xFFFFB4AB)
-internal val Red90 = Color(0xFFFFDAD6)
-internal val Teal10 = Color(0xFF001F26)
-internal val Teal20 = Color(0xFF02363F)
-internal val Teal30 = Color(0xFF214D56)
-internal val Teal40 = Color(0xFF3A656F)
-internal val Teal80 = Color(0xFFA2CED9)
-internal val Teal90 = Color(0xFFBEEAF6)
+private val light_primary = Color(0xFFd3131b)
+private val light_onPrimary = Color(0xFFffffff)
+private val light_primaryContainer = Color(0xFFc9e6ff)
+private val light_onPrimaryContainer = Color(0xFF001e31)
+private val light_secondary = Color(0xFF50606e)
+private val light_onSecondary = Color(0xFFffffff)
+private val light_secondaryContainer = Color(0xFFd3e4f5)
+private val light_onSecondaryContainer = Color(0xFF0c1d29)
+private val light_tertiary = Color(0xFF65587b)
+private val light_onTertiary = Color(0xFFffffff)
+private val light_tertiaryContainer = Color(0xFFecdcff)
+private val light_onTertiaryContainer = Color(0xFF211634)
+private val light_error = Color(0xFFba1b1b)
+private val light_errorContainer = Color(0xFFffdad4)
+private val light_onError = Color(0xFFffffff)
+private val light_onErrorContainer = Color(0xFF410001)
+private val light_background = Color(0xFFfcfcff)
+private val light_onBackground = Color(0xFF1a1c1e)
+private val light_surface = Color(0xFFfcfcff)
+private val light_onSurface = Color(0xFF1a1c1e)
+private val light_surfaceVariant = Color(0xFFdee3ea)
+private val light_onSurfaceVariant = Color(0xFF41474d)
+private val light_outline = Color(0xFF72787e)
+private val light_inverseOnSurface = Color(0xFFf0f0f3)
+private val light_inverseSurface = Color(0xFF2f3032)
+
+private val dark_primary = Color(0xFF8bcdff)
+private val dark_onPrimary = Color(0xFF003450)
+private val dark_primaryContainer = Color(0xFF004b72)
+private val dark_onPrimaryContainer = Color(0xFFc9e6ff)
+private val dark_secondary = Color(0xFFb7c8d9)
+private val dark_onSecondary = Color(0xFF22323f)
+private val dark_secondaryContainer = Color(0xFF394956)
+private val dark_onSecondaryContainer = Color(0xFFd3e4f5)
+private val dark_tertiary = Color(0xFFd0c0e8)
+private val dark_onTertiary = Color(0xFF362b4a)
+private val dark_tertiaryContainer = Color(0xFF4d4162)
+private val dark_onTertiaryContainer = Color(0xFFecdcff)
+private val dark_error = Color(0xFFffb4a9)
+private val dark_errorContainer = Color(0xFF930006)
+private val dark_onError = Color(0xFF680003)
+private val dark_onErrorContainer = Color(0xFFffdad4)
+private val dark_background = Color(0xFF1a1c1e)
+private val dark_onBackground = Color(0xFFe2e2e5)
+private val dark_surface = Color(0xFF1a1c1e)
+private val dark_onSurface = Color(0xFFe2e2e5)
+private val dark_surfaceVariant = Color(0xFF41474d)
+private val dark_onSurfaceVariant = Color(0xFFc2c7ce)
+private val dark_outline = Color(0xFF8b9198)
+private val dark_inverseOnSurface = Color(0xFF1a1c1e)
+private val dark_inverseSurface = Color(0xFFe2e2e5)
+
+val seed = Color(0xFF0f3750)
+val error = Color(0xFFba1b1b)
+
+
+/**
+ * Light default theme color scheme
+ */
+@VisibleForTesting
+val LightDefaultColorScheme = lightColorScheme(
+    primary = light_primary,
+    onPrimary = light_onPrimary,
+    primaryContainer = light_primaryContainer,
+    onPrimaryContainer = light_onPrimaryContainer,
+    secondary = light_secondary,
+    onSecondary = light_onSecondary,
+    secondaryContainer = light_secondaryContainer,
+    onSecondaryContainer = light_onSecondaryContainer,
+    tertiary = light_tertiary,
+    onTertiary = light_onTertiary,
+    tertiaryContainer = light_tertiaryContainer,
+    onTertiaryContainer = light_onTertiaryContainer,
+    error = light_error,
+    errorContainer = light_errorContainer,
+    onError = light_onError,
+    onErrorContainer = light_onErrorContainer,
+    background = light_background,
+    onBackground = light_onBackground,
+    surface = light_surface,
+    onSurface = light_onSurface,
+    surfaceVariant = light_surfaceVariant,
+    onSurfaceVariant = light_onSurfaceVariant,
+    outline = light_outline,
+    inverseOnSurface = light_inverseOnSurface,
+    inverseSurface = light_inverseSurface,
+)
+
+/**
+ * Dark default theme color scheme
+ */
+@VisibleForTesting
+val DarkDefaultColorScheme = darkColorScheme(
+    primary = dark_primary,
+    onPrimary = dark_onPrimary,
+    primaryContainer = dark_primaryContainer,
+    onPrimaryContainer = dark_onPrimaryContainer,
+    secondary = dark_secondary,
+    onSecondary = dark_onSecondary,
+    secondaryContainer = dark_secondaryContainer,
+    onSecondaryContainer = dark_onSecondaryContainer,
+    tertiary = dark_tertiary,
+    onTertiary = dark_onTertiary,
+    tertiaryContainer = dark_tertiaryContainer,
+    onTertiaryContainer = dark_onTertiaryContainer,
+    error = dark_error,
+    errorContainer = dark_errorContainer,
+    onError = dark_onError,
+    onErrorContainer = dark_onErrorContainer,
+    background = dark_background,
+    onBackground = dark_onBackground,
+    surface = dark_surface,
+    onSurface = dark_onSurface,
+    surfaceVariant = dark_surfaceVariant,
+    onSurfaceVariant = dark_onSurfaceVariant,
+    outline = dark_outline,
+    inverseOnSurface = dark_inverseOnSurface,
+    inverseSurface = dark_inverseSurface,
+)
+
+/**
+ * Light Android theme color scheme
+ */
+@VisibleForTesting
+val LightAndroidColorScheme = lightColorScheme(
+    primary = light_primary,
+    onPrimary = light_onPrimary,
+    primaryContainer = light_primaryContainer,
+    onPrimaryContainer = light_onPrimaryContainer,
+    secondary = light_secondary,
+    onSecondary = light_onSecondary,
+    secondaryContainer = light_secondaryContainer,
+    onSecondaryContainer = light_onSecondaryContainer,
+    tertiary = light_tertiary,
+    onTertiary = light_onTertiary,
+    tertiaryContainer = light_tertiaryContainer,
+    onTertiaryContainer = light_onTertiaryContainer,
+    error = light_error,
+    errorContainer = light_errorContainer,
+    onError = light_onError,
+    onErrorContainer = light_onErrorContainer,
+    background = light_background,
+    onBackground = light_onBackground,
+    surface = light_surface,
+    onSurface = light_onSurface,
+    surfaceVariant = light_surfaceVariant,
+    onSurfaceVariant = light_onSurfaceVariant,
+    outline = light_outline,
+    inverseOnSurface = light_inverseOnSurface,
+    inverseSurface = light_inverseSurface,
+)
+
+/**
+ * Dark Android theme color scheme
+ */
+@VisibleForTesting
+val DarkAndroidColorScheme = darkColorScheme(
+    primary = dark_primary,
+    onPrimary = dark_onPrimary,
+    primaryContainer = dark_primaryContainer,
+    onPrimaryContainer = dark_onPrimaryContainer,
+    secondary = dark_secondary,
+    onSecondary = dark_onSecondary,
+    secondaryContainer = dark_secondaryContainer,
+    onSecondaryContainer = dark_onSecondaryContainer,
+    tertiary = dark_tertiary,
+    onTertiary = dark_onTertiary,
+    tertiaryContainer = dark_tertiaryContainer,
+    onTertiaryContainer = dark_onTertiaryContainer,
+    error = dark_error,
+    errorContainer = dark_errorContainer,
+    onError = dark_onError,
+    onErrorContainer = dark_onErrorContainer,
+    background = dark_background,
+    onBackground = dark_onBackground,
+    surface = dark_surface,
+    onSurface = dark_onSurface,
+    surfaceVariant = dark_surfaceVariant,
+    onSurfaceVariant = dark_onSurfaceVariant,
+    outline = dark_outline,
+    inverseOnSurface = dark_inverseOnSurface,
+    inverseSurface = dark_inverseSurface,
+)
+
+/**
+ * Light Android gradient colors
+ */
+val LightAndroidGradientColors = GradientColors(container = light_primaryContainer)
+
+/**
+ * Dark Android gradient colors
+ */
+val DarkAndroidGradientColors = GradientColors(container = Color.Black)
+
+/**
+ * Light Android background theme
+ */
+val LightAndroidBackgroundTheme = BackgroundTheme(color = light_primaryContainer)
+
+/**
+ * Dark Android background theme
+ */
+val DarkAndroidBackgroundTheme = BackgroundTheme(color = Color.Black)

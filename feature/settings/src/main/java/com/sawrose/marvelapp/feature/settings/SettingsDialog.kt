@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.compose.MarvelTheme
-import com.example.compose.supportsDynamicTheming
+import com.sawrose.marvelapp.core.designsystem.theme.MarvelTheme
+import com.sawrose.marvelapp.core.designsystem.theme.supportsDynamicTheming
 import com.sawrose.marvelapp.core.model.DarkThemeConfig
 import com.sawrose.marvelapp.core.model.DarkThemeConfig.*
 import com.sawrose.marvelapp.core.model.ThemeBrand
