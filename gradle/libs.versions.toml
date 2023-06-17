@@ -13,7 +13,7 @@ androidxSplashScreen = "1.0.0"
 androidxLifecycle = "2.6.1"
 androidxNavigation = "2.5.3"
 androidxHiltNavigationCompose = "1.0.0"
-androidxMetrics = "1.0.0-alpha03"
+androidxMetrics = "1.0.0-alpha04"
 androidxWindowManager = "1.0.0"
 androidxWork = "2.7.1"
 
