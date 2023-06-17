@@ -4,9 +4,7 @@ import android.content.Context
 import coil.ImageLoader
 import coil.util.DebugLogger
 import com.sawrose.marvelapp.core.network.BuildConfig
-import com.sawrose.marvelapp.core.network.MarvelNetworkDataSource
 import com.sawrose.marvelapp.core.network.retrofit.RetrofitMarvelNetwork
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +14,7 @@ import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -35,13 +34,45 @@ object NetworkModule {
         )
         .build()
 
+    /**
+     * Create a provider method binding for [HttpLoggingInterceptor].
+     *
+     * @return Instance of http interceptor.
+     * @see Provides
+     */
     @Singleton
     @Provides
-    fun provideRetrofit(client: OkHttpClient): Retrofit {
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        return httpLoggingInterceptor
+    }
+
+    /**
+     * Create a provider method binding for [OkHttpClient].
+     *
+     * @return Instance of http client.
+     * @see Provides
+     */
+    @Singleton
+    @Provides
+    fun provideHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
+        val clientBuilder = OkHttpClient.Builder()
+        if (BuildConfig.DEBUG) {
+            clientBuilder.addInterceptor(interceptor)
+        }
+        return clientBuilder.build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRetrofitMarvelNetwork(client: OkHttpClient): RetrofitMarvelNetwork {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.MARVEL_API_BASE_URL)
             .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(RetrofitMarvelNetwork::class.java)
     }
 
 

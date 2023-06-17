@@ -12,6 +12,7 @@ message UserPreferences{
   int32 characterChangeListVersion = 3;
 
   map<string, bool> character_favourite_ids = 4;
+  map<string, bool> viewed_character_ids = 20;
 
   ThemeBrandProto theme_brand = 5;
   DarkThemeConfigProto dark_theme_config = 6;

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_character_screen">No characters found</string>
+    <string name="loading">Loading</string>
+    <string name="character_loading_description">Character Loading</string>
+</resources>

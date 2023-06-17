@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources  xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.MarvelApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Allows us to override night specific attributes in the
+        values-night folder. -->
+    <style name="NightAdjusted.Theme.Marvel" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <!-- Allows us to override platform level specific attributes in their
+         respective values-vXX folder. -->
+    <style name="PlatformAdjusted.Theme.Marvel" parent="NightAdjusted.Theme.Marvel">
+        <item name="android:statusBarColor">@color/black30</item>
+    </style>
+
+    <!-- The final theme we use -->
+    <style name="Theme.Marvel" parent="PlatformAdjusted.Theme.Marvel"/>
+
+    <style name="NightAdjusted.Theme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="Theme.Marvel.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Marvel</item>
+    </style>
 </resources>

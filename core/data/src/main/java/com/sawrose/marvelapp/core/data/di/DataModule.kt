@@ -1,5 +1,7 @@
 package com.sawrose.marvelapp.core.data.di
 
+import com.sawrose.marvelapp.core.data.repository.MarvelRepository
+import com.sawrose.marvelapp.core.data.repository.OfflineFirstCharactersRepository
 import com.sawrose.marvelapp.core.data.repository.OfflineFirstUserDataDataRepository
 import com.sawrose.marvelapp.core.data.repository.UserDataRepository
 import com.sawrose.marvelapp.core.data.utils.ConnectivityManagerNetworkMonitor
@@ -23,4 +25,9 @@ interface DataModule {
     fun bindsNetworkMonitor(
         networkMonitor: ConnectivityManagerNetworkMonitor
     ): NetworkMonitor
+
+    @Binds
+    fun bindsCharacterDataRepository(
+        characterDataRepository: OfflineFirstCharactersRepository
+    ): MarvelRepository
 }

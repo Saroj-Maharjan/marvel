@@ -18,6 +18,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 include(":core:data")
 include(":core:designsystem")
 include(":core:network")
@@ -30,3 +31,6 @@ include(":core:ui")
 include(":core:datastore")
 include(":feature:settings")
 include(":core:domain")
+include(":sync:work")
+include(":core:testing")
+include(":core:notification")
