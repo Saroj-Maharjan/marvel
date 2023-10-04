@@ -9,7 +9,6 @@ internal fun FavouriteRoute(
     onFavouriteClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-
     FavouriteScreen(
         onFavouriteClick = onFavouriteClick,
         modifier = modifier

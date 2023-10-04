@@ -1,5 +1,6 @@
 package com.sawrose.marvelapp.core.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
@@ -23,6 +24,7 @@ fun LazyGridScope.characterList(
         CharacterUiState.Loading -> Unit
         is CharacterUiState.Characters -> {
             items(uiState.characters, key = { it.id }) { character ->
+                Log.e("CharacterList", "characterList: ${character.name} \n ${character.imageUrl}")
                CharacterCardExpanded(
                         character = character,
                         onCharacterClick = { onCharacterClick(character.id) },

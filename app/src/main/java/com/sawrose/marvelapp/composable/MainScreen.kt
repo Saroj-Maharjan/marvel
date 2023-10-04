@@ -46,8 +46,8 @@ import com.sawrose.marvelapp.core.designsystem.icon.MarvelIcons
 import com.sawrose.marvelapp.core.designsystem.theme.GradientColors
 import com.sawrose.marvelapp.core.designsystem.theme.LocalGradientColors
 import com.sawrose.marvelapp.feature.settings.SettingsDialog
-import com.sawrose.marvelapp.navigation.TopLevelDestination
 import com.sawrose.marvelapp.navigation.MarvelNavHost
+import com.sawrose.marvelapp.navigation.TopLevelDestination
 
 @OptIn(
     ExperimentalMaterial3Api::class,

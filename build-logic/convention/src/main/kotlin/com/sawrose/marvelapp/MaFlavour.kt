@@ -21,7 +21,7 @@ enum class MaFlavor(val dimension: FlavorDimension, val applicationIdSuffix: Str
 }
 
 fun Project.configureFlavors(
-    commonExtension: CommonExtension<*, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *>,
     flavorConfigurationBlock: ProductFlavor.(flavor: MaFlavor) -> Unit = {}
 ) {
     commonExtension.apply {
