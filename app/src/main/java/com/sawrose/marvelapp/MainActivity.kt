@@ -30,7 +30,7 @@ import javax.inject.Inject
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class zMainActivity : ComponentActivity() {
 
     /**
      * Lazily inject [JankStats], which is used to track jank throughout the app.

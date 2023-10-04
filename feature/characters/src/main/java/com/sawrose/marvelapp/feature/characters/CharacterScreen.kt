@@ -28,6 +28,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -78,25 +79,30 @@ internal fun CharacterScreen(
     val state = rememberLazyGridState()
     TrackScrollJank(scrollableState = state, stateName = "CharacterScreen:Characters")
 
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(300.dp),
-        contentPadding = PaddingValues(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
+    Box(
         modifier = modifier
-            .fillMaxSize()
-            .testTag("CharacterScreen:Characters"),
-        state = state
+            .fillMaxSize(),
     ) {
-        characterList(
-            uiState = uiState,
-            onCharacterClick = onCharacterClick,
-        )
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(300.dp),
+            contentPadding = PaddingValues(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+            modifier = modifier
+                .fillMaxSize()
+                .testTag("CharacterScreen:Characters"),
+            state = state
+        ) {
+            characterList(
+                uiState = uiState,
+                onCharacterClick = onCharacterClick,
+            )
 
-        item(span = { GridItemSpan(maxLineSpan) }) {
-            Column {
-                Spacer(modifier = Modifier.height(16.dp))
-                Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Column {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
+                }
             }
         }
     }
@@ -122,13 +128,16 @@ internal fun CharacterScreen(
             )
         }
     }
-
-//    NotificationPermissionEffect()
+    NotificationPermissionEffect()
 }
 
 @Composable
 @OptIn(ExperimentalPermissionsApi::class)
 fun NotificationPermissionEffect() {
+    // Permission requests should only be made from an Activity Context, which is not present
+    // in previews
+    if (LocalInspectionMode.current) return
+
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
     val notificationsPermissionState = rememberPermissionState(
         android.Manifest.permission.POST_NOTIFICATIONS,

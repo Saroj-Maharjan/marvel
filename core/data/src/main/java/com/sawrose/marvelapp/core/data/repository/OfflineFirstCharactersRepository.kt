@@ -1,5 +1,6 @@
 package com.sawrose.marvelapp.core.data.repository
 
+import android.util.Log
 import com.sawrose.marvelapp.core.data.Synchronizer
 import com.sawrose.marvelapp.core.data.changeListSync
 import com.sawrose.marvelapp.core.data.model.asEntity
@@ -33,7 +34,12 @@ class OfflineFirstCharactersRepository @Inject constructor(
 ) : MarvelRepository {
     override fun getCharacters(): Flow<List<Character>> =
         characterDao.getCharactersEntities()
-            .map { it.map { it.asExternalModel() } }
+            .map {
+                it.map { character ->
+                    Log.i("Character List: \n", character.asExternalModel().imageUrl)
+                    character.asExternalModel()
+                }
+            }
 
     override fun getCharacter(id: String): Flow<Character> =
         characterDao.getCharacterEntity(id)
@@ -76,10 +82,7 @@ class OfflineFirstCharactersRepository @Inject constructor(
                             ),
                     )
                 }
-                // TODO: Define business logic for notifications on first time sync.
-                //  we probably do not want to send notifications on first install.
-                //  We can easily check if the change list version is 0 and not send notifications
-                // if it is.
+
                 val addedNewResources = characterDao.getCharactersEntities(
                     ids = changeIds.toSet(),
                 )

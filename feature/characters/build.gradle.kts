@@ -8,6 +8,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.paging.compose)
     implementation(libs.accompanist.permissions)
     implementation(libs.androidx.activity.compose)
 }

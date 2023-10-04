@@ -8,5 +8,6 @@ import javax.inject.Inject
 class GetCharactersUseCase @Inject constructor(
     private val repository: MarvelRepository
 ){
-    operator fun invoke(): Flow<List<Character>> = repository.getCharacters()
+    operator fun invoke(): Flow<List<Character>> =
+        repository.getCharacters()
 }
