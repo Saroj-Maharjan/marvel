@@ -19,7 +19,7 @@ androidxWindowManager = "1.0.0"
 androidxWork = "2.8.1"
 
 ## Compose
-androidxComposeBom = "2023.08.00"
+androidxComposeBom = "2023.10.01"
 androidxComposeCompiler = "1.5.0"
 androidxComposeMaterial3 = "1.1.1"
 androidxActivityCompose = "1.7.2"
