@@ -24,7 +24,7 @@ androidxComposeCompiler = "1.5.0"
 androidxComposeMaterial3 = "1.1.1"
 androidxActivityCompose = "1.7.2"
 
-protobuf = "3.23.2"
+protobuf = "3.25.5"
 protobufPlugin = "0.9.3"
 
 coil = "2.2.2"
