@@ -22,7 +22,7 @@ androidxWork = "2.8.1"
 androidxComposeBom = "2023.08.00"
 androidxComposeCompiler = "1.5.0"
 androidxComposeMaterial3 = "1.1.1"
-androidxActivityCompose = "1.7.2"
+androidxActivityCompose = "1.10.0"
 
 protobuf = "3.23.2"
 protobufPlugin = "0.9.3"
