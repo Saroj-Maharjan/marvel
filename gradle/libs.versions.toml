@@ -14,7 +14,7 @@ androidxLifecycle = "2.6.1"
 androidxNavigation = "2.7.1"
 androidxHiltNavigationCompose = "1.0.0"
 androidxPaging = "3.2.0"
-androidxMetrics = "1.0.0-alpha04"
+androidxMetrics = "1.0.0-beta01"
 androidxWindowManager = "1.0.0"
 androidxWork = "2.8.1"
 
